@@ -36,6 +36,7 @@ int main()	{
 		exit(-1);
 	}
 	length = loadArray(fin, goblins);
+	printArray(goblins, length);
 	mergeSort(goblins, 0, length - 1);
 	printArray(goblins, length);
 	//end of program
@@ -103,9 +104,12 @@ void merge(Goblin goblins[], int const left, int const mid, int const right)	{
 
 /** mergeSort call function */
 void mergeSort(Goblin goblins[], int const left, int const right)	{
+	cout << left << " > " << right << " = " << (left > right) << endl;
 	if (left < right)	{
 		int mid = left + (left - right) / 2;
+		cout << "sorting between index " << left << ", " << mid << endl;
 		mergeSort(goblins, left, mid);
+		cout << "sorting between index " << mid + 1 << ", " << right << endl;
 		mergeSort(goblins, mid + 1, right);
 		merge(goblins, left, mid, right);
 	}
