@@ -76,7 +76,10 @@ void merge(Goblin goblins[], int const left, int const mid, int const right)	{
 		indexOfMerge = left;
 	//while either subarray A or subarry B has elements left...
 	while(indexOfSubA < subA && indexOfSubB < subB) {
-		if(goblinCompare(rightArray[indexOfSubB],leftArray[indexOfSubA]))	{
+		cout << "comparing " << rightArray[indexOfSubB].name <<
+			"with " << leftArray[indexOfSubA].name << endl;
+		//if (leftArray[indexOfSubArrayOne]<= rightArray[indexOfSubArrayTwo]) {
+		if(goblinCompare(leftArray[indexOfSubA], rightArray[indexOfSubB]))	{
 			goblins[indexOfMerge] = leftArray[indexOfSubA];
 			indexOfSubA++;
 		}
@@ -105,11 +108,11 @@ void merge(Goblin goblins[], int const left, int const mid, int const right)	{
 /** mergeSort call function */
 void mergeSort(Goblin goblins[], int const left, int const right)	{
 	cout << left << " > " << right << " = " << (left > right) << endl;
-	if (left < right)	{
-		int mid = left + (left - right) / 2;
-		cout << "sorting between index " << left << ", " << mid << endl;
+	if (left <= right)	{
+		int mid = left + (right - left) / 2;
+		cout << "hi sorting between goblin"  << goblins[left].name << ", " << mid << endl;
 		mergeSort(goblins, left, mid);
-		cout << "sorting between index " << mid + 1 << ", " << right << endl;
+		cout << "ho sorting between index " << mid + 1 << ", " << right << endl;
 		mergeSort(goblins, mid + 1, right);
 		merge(goblins, left, mid, right);
 	}
@@ -119,9 +122,9 @@ void mergeSort(Goblin goblins[], int const left, int const right)	{
 //returns true if Goblin A is greater than or equal to Goblin B.
 bool goblinCompare(Goblin a, Goblin b)	{
 	bool aIsGreater = false;
-	if (a.strength >= b.strength)	aIsGreater = true;
+	if (a.strength <= b.strength)	aIsGreater = true;
 	else
-		if (a.height >= b.height)	aIsGreater = true;
+		if (a.height <= b.height)	aIsGreater = true;
 	return aIsGreater;
 }
 
